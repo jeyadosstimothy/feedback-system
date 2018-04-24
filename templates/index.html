@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+
+{% block title%}
+  Feedback Login
+{% endblock %}
+
+{% block content %}
+  <h2 align="center">{% block heading %}Welcome to CBCS Feedback System{% endblock %}</h2>
+  <h3 align="center">{{myText}}</h3>
+  <ul class="steps">
+    <li class="is-active">Step 1</li>
+    <li>Step 2</li>
+  </ul>
+  <form action="{{submitLink}}" class="form-wrapper" method="post" id="login">
+    <fieldset class="section is-active">
+      <h2>{% block selection %}I am a{% endblock %}</h2>
+      <div class="row cf">
+        <div class="four col">
+          <input type="radio" name="type" value="student" id="r1" checked>
+          <label for="r1">
+            <h4>Student</h4>
+          </label>
+        </div>
+        <div class="four col">
+          <input type="radio" name="type" value="parent" id="r2"><label for="r2">
+            <h4>Parent</h4>
+          </label>
+        </div>
+        <div class="four col">
+          <input type="radio" name="type" value="alumni" id="r3"><label for="r3">
+            <h4>Alumni</h4>
+          </label>
+        </div>
+      </div>
+      <div class="button">Next</div>
+    </fieldset>
+    <fieldset class="section">
+      <h3>Login</h3>
+      <input type="text" name="username" id="username" placeholder="username">
+      <input type="password" name="password" id="password" placeholder="password">
+      <div class="button">Login</div>
+    </fieldset>
+    <fieldset class="section">
+      <h3>Validating Credentials...</h3>
+      <p>Please wait until you are redirected to feedback page.</p>
+    </fieldset>
+  </form>
+{% endblock %}

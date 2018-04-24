@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block title%}
+  Feedback
+{% endblock %}
+
+{% block content %}
+  <h2 align="center">{{type}} Feedback Form</h2>
+  <h3 align="center">Welcome {{ name }}</h3>
+  <form action="/submit" method="post" id="feedback">
+    <table align="center">
+      {% for i in range(question|length) %}
+      <tr><td colspan="4">{{i+1}}. {{question[i]}}</td></tr>
+      <tr>
+        <td><input type="radio" name="{{i}}" value="0" />Strongly Disagree</td>
+        <td><input type="radio" name="{{i}}" value="1" />Disagree</td>
+        <td><input type="radio" name="{{i}}" value="2" />Agree</td>
+        <td><input type="radio" name="{{i}}" value="3" required="required" />Strongly Agree</td>
+      </tr>
+      {% endfor %}
+      <tr><td colspan="4" align="center"><div class="button" id="feedbackSubmit">Submit</div></td></tr>
+    </table>
+    <input type="submit" hidden="hidden" id='submit'/>
+  </form>
+{% endblock %}

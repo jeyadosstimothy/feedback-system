@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<meta charset="UTF-8">
+	<title>Result</title>
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+    	<br />
+      	<div style="width: 90%;margin: 0 auto;">
+      		<h2>{{type}} Feedback Analysis</h2>
+			{% for i in range(result|length) %}
+			<h3>{{i+1}}. {{question[i]}}</h3>
+				{% for j in range(4) %}
+				<strong>{{choice[j]}}</strong><span class="pull-right">{% if result[i][j] %}{{result[i][j]}}{% else %}0{% endif %}%</span>
+				<div class="progress progress-striped active">
+					<div class="bar" style="width: {{result[i][j]}}%;"></div>
+				</div>
+				{% endfor %}
+			{% endfor %}
+			<form action="/logout">
+				<div align="center"><div class="button" id="feedbackSubmit">Logout</div></div>
+				<input type="submit" hidden="hidden" id='submit'/>
+			</form>
+			
+		</div>
+		<br />
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
