@@ -9,11 +9,11 @@ question={}
 choice={0:'Strongly Disagree',1:'Disagree',2:'Agree',3:'Strongly Agree'}
 
 def fillQues():
-	with open('studentq.txt') as f:
+	with open('questions/studentq.txt') as f:
 		student_q=[i.strip() for i in f.read().splitlines()]
-	with open('parentq.txt') as f:
+	with open('questions/parentq.txt') as f:
 		parent_q=[i.strip() for i in f.read().splitlines()]
-	with open('alumniq.txt') as f:
+	with open('questions/alumniq.txt') as f:
 		alumni_q=[i.strip() for i in f.read().splitlines()]
 	question['parent']=parent_q
 	question['student']=student_q
@@ -22,7 +22,7 @@ def fillQues():
 @app.route("/")
 def func():
 	if 'userid' in session and session['userid']!='admin':
-		return render_template('feedback.html',name=session['userid'],question=question[session['type']],type=session['type'][0].upper()+session['type'][1:])
+		return render_template('feedback.html',name=session['user'],question=question[session['type']],type=session['type'][0].upper()+session['type'][1:])
 	elif 'userid' in session and session['userid']=='admin':
 		return showResults()
 	else:
@@ -59,6 +59,7 @@ def login():
 		if(already):
 			return render_template('index.html',myText='You have already given Feedback. Please login at a different time.',submitLink='/login')
 		session['userid']=str(userid)
+		session['user']=request.form['username']
 		return render_template('feedback.html',name=request.form['username'],question=question[request.form['type']],type=uType[0].upper()+uType[1:])
 	else:
 		return render_template('index.html',myText='The details you provided did not match any records. Please try again.',submitLink='/login')
